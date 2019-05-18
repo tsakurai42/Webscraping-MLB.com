@@ -2,82 +2,76 @@
 <html>
 
 <head>
-    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/bootstrap.min.css') }}">
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <style>
+        table {}
+        td {padding-left: 5px;padding-right:5px;border: 1px solid black}
+    </style>
 </head>
 
 <body>
-    <div class="container" >
+    <div class="container">
         <div class="row bg-primary">
-            <div class="col-12 text-center" style="padding:2rem">
+            <div class="col-12 text-center"
+                 style="padding:2rem">
                 <h1 class="text-light">Baseball!</h2>
             </div>
         </div>
 
-        <div class="row" style="margin-bottom:1rem;margin-top:1rem">
+        <div class="row"
+             style="margin-bottom:1rem;margin-top:1rem">
             <div class="col-12">
                 <span>
-                    <h2>Top Hitter:</h2>
-                    <h3>{{ player_vars.name }}</h3> on the <h3>{{ player_vars.team_name}}</h3>
+                    <h3>Top Hitter:</h3>
+                    <span><strong>{{ player_vars.name }}</strong> on the
+                        <strong>{{ player_vars.team_name}}</strong></span>
                 </span>
             </div>
         </div>
 
-        <div class="row" style="margin-bottom:1rem">
+        <div class="row"
+             style="margin-bottom:1rem">
             <div class="col-md-8 col-xs-12">
                 <h3>Most Recent Video:</h3>
-                <iframe src="{{player_vars.vid_url}}"></iframe>
+                <div style="padding-top:56.25%"><iframe src="{{player_vars.vid_url}}"
+                            style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>
                 <a href="{{player_vars.vid_url}}">{{ player_vars.vid_name }}</a>
             </div>
             <div class="col-md-4 col-xs-12">
-                <div class="row" style="margin-bottom:1rem">
-                    <div style="border:1px solid rgb(150,150,150);padding:1em;background-color:rgb(222,222,222)">
-                        <h3>Current Mars Weather:</h3>
-                        {{ marsvar.mars_weather}}
-                    </div>
-                </div>
-                <div class="row">
-                    <div><h3>Mars Facts:</h3>
-                    {{ marsvar.mars_facts_table|safe}}
-                </div>
-                </div>
-            </div>
-        </div>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>Batting Average</td>
+                            <td>{{player_vars.batting_avg}}</td>
+                        </tr>
+                        <tr>
+                            <td>Slugging Percentage</td>
+                            <td>{{player_vars.slugging_pct}}</td>
+                        </tr>
+                        <tr>
+                            <td>Home Runs</td>
+                            <td>{{player_vars.homeruns}}</td>
+                        </tr>
+                        <tr>
+                            <td>RBIs</td>
+                            <td>{{player_vars.rbi}}</td>
+                        </tr>
+                    </tbody>
+                </table>
 
-        <div class="row" style="">
-            <div class="col-1"></div>
-            <div class="col-5">
-                <img src='{{ marsvar.hemisphere_images[0].url }}' class="img-fluid">
-                <h3>{{ marsvar.hemisphere_images[0].title}}</h3>
             </div>
-
-            <div class="col-5">
-                <img src='{{ marsvar.hemisphere_images[1].url }}' class="img-fluid">
-                <h3>{{ marsvar.hemisphere_images[1].title}}</h3>
-            </div>
-            <div class="col-1"></div>
-        </div>
-        <div class="row">
-            <div class="col-1"></div>
-            <div class="col-5">
-                <img src='{{ marsvar.hemisphere_images[2].url }}' class="img-fluid">
-                <h3>{{ marsvar.hemisphere_images[2].title}}</h3>
-            </div>
-            <div class="col-5">
-                <img src='{{ marsvar.hemisphere_images[3].url }}' class="img-fluid">
-                <h3>{{ marsvar.hemisphere_images[3].title}}</h3>
-            </div>
-            <div class="col-1"></div>
         </div>
 </body>
 
