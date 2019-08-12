@@ -1,2 +1,1 @@
-# project-2-mlb
-Web Scraping Baseball
+# Project 2: Webscraping MLB.com
